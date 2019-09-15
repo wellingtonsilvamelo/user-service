@@ -3,6 +3,7 @@ package com.wellington.applications.security;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -15,9 +16,9 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
         http        
         	.httpBasic()
         	.and()
-        	.authorizeRequests()
-        		.antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
-        		.anyRequest().authenticated()
+        	.authorizeRequests()        	
+        	.antMatchers("/api/**").authenticated()
+        	.anyRequest().permitAll()
         	.and()
         	.csrf()
         		.disable()
@@ -26,5 +27,19 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter{
         	.headers()
         		.frameOptions()
         			.disable();
+    }
+    
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/v2/api-docs",
+                                   "/configuration/ui",
+                                   "/swagger-resources/**",
+                                   "/configuration/security",
+                                   "/swagger-ui.html",
+                                   "/webjars/**",
+                                   "/webjars/springfox-swagger-ui/springfox.js?v=2.9.2:1",
+                                   "/csrf", 
+                                   "/",
+                                   "/api/v1/user/save");
     }
 }

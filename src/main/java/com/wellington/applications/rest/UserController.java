@@ -93,7 +93,7 @@ public class UserController {
 
 	}
 
-	@PostMapping
+	@PostMapping(value = "/save")
 	public ResponseEntity<Response<String>> save(@RequestBody UserDTO userDTO) {
 		Response<String> response = new Response<>();
 
