@@ -3,4 +3,4 @@ spring:
     name: user-service
   cloud:
     config:
-      uri: http://localhost:8090
+      uri: https://tw-config-server.herokuapp.com/
