@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                    "/",
                                    "/h2-console/**",
                                    "/oauth/register",
-                                   "/api/v1/user/save");
+                                   "/api/v1/user/register");
     }
 
 }

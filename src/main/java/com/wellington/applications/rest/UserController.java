@@ -93,13 +93,13 @@ public class UserController {
 
 	}
 
-	@PostMapping(value = "/save")
+	@PostMapping(value = "/register")
 	public ResponseEntity<Response<String>> save(@RequestBody UserDTO userDTO) {
 		Response<String> response = new Response<>();
 
 		User user = UserBuilder.create().userDTO(userDTO).build();
 
-		response.setData(userService.save(user));
+		response.setData(userService.register(user));
 		response.setCode(HttpStatus.OK.value());
 		response.setStatus(HttpStatus.OK.getReasonPhrase());
 
